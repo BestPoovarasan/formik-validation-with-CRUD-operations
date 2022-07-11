@@ -1,7 +1,9 @@
 import React from "react";
 import { useFormik } from "formik";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { useState, useEffect} from "react";
 import axios from "axios";
+
 
 const validate = values => {
     const errors = {};
@@ -9,7 +11,7 @@ const validate = values => {
         errors.Name = 'please enter name';
     } else if (values.Name.length < 4) {
         errors.Name = 'Must be 15 characters or greater';
-    } else if (values.Name.length > 14) {
+    } else if (values.Name.length > 20) {
         errors.Name = 'Must be 14 characters or lessthan';
     }
 
@@ -33,7 +35,7 @@ const validate = values => {
 
     return errors;
 };
-function Createuser() {
+function Useredit() {
     let navigation = useNavigate();
 
     const formik = useFormik({
@@ -50,21 +52,28 @@ function Createuser() {
 
         onSubmit: async (values) => {
             try {
-               await axios.post("https://624e6fc053326d0cfe5b242a.mockapi.io/user", values);
-                
-    // (JSON.stringify(values, null, 2));
+               await axios.put(`https://624e6fc053326d0cfe5b242a.mockapi.io/user/${params.id}`, values);
                 navigation("/users");
             } catch (error) {
-                
-            }
-            
-           
+                alert("Something went wrong please contact Admin")
+            } 
         },
-        
     });
+
+    let params= useParams();
+   useEffect(()=>{
+    fetchdata();
+   },[])
+
+   let fetchdata = async() => {
+    let userdata= await axios.get(`https://624e6fc053326d0cfe5b242a.mockapi.io/user/${params.id}`);
+  //   setuser(userdata.data)
+  formik.setValues(userdata.data)}
+
+  
     return (
         <div classNameName="container">
-            <h3>create user</h3>
+            <h3>UserEdit</h3>
             <form onSubmit={formik.handleSubmit}>
                 <div className="row">
                     <div className="col-lg-6">
@@ -140,4 +149,4 @@ function Createuser() {
     );
 }
 
-export default Createuser;
+export default Useredit;

@@ -1,10 +1,10 @@
 import React from "react";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Sidebar() {
   return (
     <ul
-      className="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
+      className="navbar-nav bg-gradient-success sidebar sidebar-dark accordion"
       id="accordionSidebar"
     >
       <a
@@ -15,7 +15,7 @@ function Sidebar() {
           <i className="fas fa-laugh-wink"></i>
         </div>
         <div className="sidebar-brand-text mx-3">
-          SB Admin <sup>2</sup>
+          Admin Panel
         </div>
       </a>
 
@@ -29,29 +29,25 @@ function Sidebar() {
       </li>
       <li className="nav-item active">
         <Link className="nav-link" to="/users">
-          <i className="fas fa-fw fa-tachometer-alt"></i>
-          <span>Users</span>
+          <i class="fa-solid fa-users"></i>
+          <span>Users & validation</span>
         </Link>
       </li>
       <li className="nav-item active">
         <Link className="nav-link" to="/products">
-          <i className="fas fa-fw fa-tachometer-alt"></i>
+          <i class="fa-solid fa-store"></i>
           <span>Products</span>
         </Link>
       </li>
 
-  
+
 
       <div className="text-center d-none d-md-inline">
         <button className="rounded-circle border-0" id="sidebarToggle"></button>
       </div>
 
       <div className="sidebar-card d-none d-lg-flex">
-        <img
-          className="sidebar-card-illustration mb-2"
-          src="img/undraw_rocket.svg"
-          alt="..."
-        />
+        <i class="fa-solid fa-lock"></i>
         <p className="text-center mb-2">
           <strong>SB Admin Pro</strong> is packed with premium features,
           components, and more!
